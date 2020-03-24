@@ -29,11 +29,9 @@ public class ProfileController {
 		List<ArticleDto> articles = usersService.getAllArticles(user);
 		model.addAttribute("articles", articles);
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		if(auth.isAuthenticated()){
-			UserDetailsImpl details = (UserDetailsImpl) auth.getPrincipal();
-			model.addAttribute("current_user", details.getUser());
-		}
-		model.addAttribute("authorizated", auth.isAuthenticated());
+		UserDetailsImpl details = (UserDetailsImpl) auth.getPrincipal();
+		model.addAttribute("current_user", UserDto.from(details.getUser()));
+		model.addAttribute("authorizated", true);
 		return "profile_page";
 	}
 

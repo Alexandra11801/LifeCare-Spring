@@ -32,5 +32,8 @@ public class User {
 	@Enumerated(value=EnumType.STRING)
 	private Role role;
 
+	@OneToOne
+	@JoinColumn(name = "file_id")
+	private FileInfo avatar;
 
 }

@@ -51,10 +51,10 @@
                 <div class="invalid-feedback">Passwords don't match</div>
             </div>
 
-<#--            <div class="form-group">-->
-<#--                <label for="avatar">Avatar</label>-->
-<#--                <input type="file" class="form-control" id="avatar" name="avatar">-->
-<#--            </div>-->
+            <div class="form-group">
+                <label for="avatar">Avatar</label>
+                <input type="file" class="form-control" id="avatar" name="avatar">
+            </div>
 
 <#--            <div class="remember-me-check">-->
 <#--                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" name="rememberMe">-->

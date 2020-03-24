@@ -25,7 +25,7 @@
 
     <div class="header container">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="/home">LifeCare</a>
+            <a class="navbar-brand" href="/">LifeCare</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -48,13 +48,14 @@
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img src="${current_user.getImagePath()}" alt="" width="20" height="20">${current_user.getName()} ${current_user.getSurname()}
+                                <img src="/${current_user.getImagePath()}" alt="" width="20" height="20">
+                                ${current_user.getName()} ${current_user.getSurname()}
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-<#--                                <a class="dropdown-item" href="/user">Profile</a>-->
+                                <a class="dropdown-item" href="/profile/${current_user.getId()}">Profile</a>
 <#--                                <a class="dropdown-item" href="/edit">Edit</a>-->
 <#--                                <a class="dropdown-item" href="/revisions">Corrections</a>-->
-<#--                                <a class="dropdown-item" href="/new_article">Create article</a>-->
+                                <a class="dropdown-item" href="/add">Create article</a>
 <#--                                <div class="dropdown-divider"></div>-->
 <#--                                <a class="dropdown-item" href="/logout">Log out</a>-->
                             </div>

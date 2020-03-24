@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.itis.lifecarespring.dto.SignUpDto;
+import ru.itis.lifecarespring.services.FilesService;
 import ru.itis.lifecarespring.services.SignUpService;
 
 import javax.servlet.http.HttpServletResponse;
@@ -22,6 +23,9 @@ public class SignUpController {
 
 	@Autowired
 	private SignUpService service;
+
+	@Autowired
+	private FilesService filesService;
 
 	@GetMapping
 	public String getSignUpPage(@RequestParam(value = "incorrect_password", required = false) String incorrect_password,
@@ -58,7 +62,7 @@ public class SignUpController {
 		if(service.userExists(form.getEmail())){
 			return "redirect:/signup?user_exists";
 		}
-		service.signUp(form, response);
+		service.signUp(form);
 		return "redirect:/";
 	}
 

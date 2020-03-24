@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 @Data
 @NoArgsConstructor
@@ -16,6 +17,6 @@ public class SignUpDto {
 	private String password;
 	private String repeatPassword;
 	private String email;
-	private String imagePath;
+	private MultipartFile avatar;
 
 }

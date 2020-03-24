@@ -19,7 +19,7 @@ public class UserDto {
 	private String imagePath;
 
 	public static UserDto from(User user){
-		return UserDto.builder().id(user.getId()).name(user.getName()).surname(user.getSurname()).email(user.getEmail()).imagePath(user.getImagePath()).build();
+		return UserDto.builder().id(user.getId()).name(user.getName()).surname(user.getSurname()).email(user.getEmail()).imagePath(user.getAvatar().getUrl()).build();
 	}
 
 }

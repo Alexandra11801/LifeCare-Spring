@@ -10,24 +10,18 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
 @Builder
-@Table(name = "articles")
-public class Article {
+@Entity
+@Table(name = "files")
+public class FileInfo {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	private String title;
-
-	@Column(length = 999999999)
-	private String text;
-	private String category;
-	private int likes;
-	private int dislikes;
-
-	@ManyToOne
-	@JoinColumn(name = "user_id")
-	private User author;
+	private String storageName;
+	private String originalName;
+	private long size;
+	private String type;
+	private String url;
 
 }

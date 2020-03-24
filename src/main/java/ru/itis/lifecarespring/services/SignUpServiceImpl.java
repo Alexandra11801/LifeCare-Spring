@@ -6,10 +6,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import ru.itis.lifecarespring.dto.SignUpDto;
 import ru.itis.lifecarespring.dto.UserDto;
-import ru.itis.lifecarespring.models.CookieValue;
-import ru.itis.lifecarespring.models.Role;
-import ru.itis.lifecarespring.models.State;
-import ru.itis.lifecarespring.models.User;
+import ru.itis.lifecarespring.models.*;
 import ru.itis.lifecarespring.repositories.CookiesRepository;
 import ru.itis.lifecarespring.repositories.UsersRepository;
 
@@ -24,7 +21,7 @@ public class SignUpServiceImpl implements SignUpService {
 	private UsersRepository usersRepository;
 
 	@Autowired
-	private CookiesRepository cookiesRepository;
+	private FilesService filesService;
 
 	@Autowired
 	private EmailService emailService;
@@ -33,21 +30,17 @@ public class SignUpServiceImpl implements SignUpService {
 	private PasswordEncoder encoder;
 
 	@Override
-	public void signUp(SignUpDto dto, HttpServletResponse response) {
+	public void signUp(SignUpDto dto) {
+		FileInfo avatar = filesService.save(dto.getAvatar());
 		User user = User.builder().name(dto.getName())
 				.surname(dto.getSurname())
 				.hashPassword(encoder.encode(dto.getPassword()))
 				.email(dto.getEmail())
-				.imagePath(dto.getImagePath())
+				.avatar(avatar)
 				.state(State.NOT_CONFIRMED)
 				.confirmationCode(UUID.randomUUID().toString())
 				.role(Role.USER).build();
 		usersRepository.save(user);
-		String value = UUID.randomUUID().toString();
-//		CookieValue cookieValue = CookieValue.builder().value(value).user(user).build();
-//		cookiesRepository.save(cookieValue);
-		response.addCookie(new Cookie("username", dto.getEmail()));
-		response.addCookie(new Cookie("password", encoder.encode(dto.getPassword())));
 		emailService.sendMail("Confirmation", UserDto.from(user), user.getEmail(), user.getConfirmationCode());
 	}
 

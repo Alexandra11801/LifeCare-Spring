@@ -8,12 +8,12 @@
                 <input type="text" class="form-control" id="title" name="title" placeholder="Title">
             </div>
             <div class="form-group">
-                <label for="category">Cathegory</label>
-                <select class="form-control" id="category" name="category">
-                    <#list categories as cat>
-                        <option>${cat}</option>
-                    </#list>
-                </select>
+<#--                <label for="category">Cathegory</label>-->
+<#--                <select class="form-control" id="category" name="category">-->
+<#--                    <#list categories as cat>-->
+<#--                        <option>${cat}</option>-->
+<#--                    </#list>-->
+<#--                </select>-->
             </div>
             <div class="form-group">
                 <label for="text">Article text</label>
