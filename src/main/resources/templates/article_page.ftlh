@@ -9,7 +9,7 @@
         </div>
         <#if authorizated == true>
             <div class="mt-3 mb-3">
-                <a href="/correct?article=${article.getTitle()}">Suggest revision</a>
+                <a href="/correct?article=${article.getTitle()}"><@spring.message 'article.page.suggest'></a>
             </div>
         </#if>
         <div class="row">
@@ -38,12 +38,12 @@
                 <input type="text" name="articleId" id="articleId" style="display: none" value="${article.getId()}">
 
                 <div class="form-group">
-                    <button type="submit" class="btn btn-success">Comment</button>
+                    <button type="submit" class="btn btn-success"><@spring.message 'article.page.comment'></button>
                 </div>
             </form>
 
             <div class="comments">
-                <h3 class="title-comments">Comments</h3>
+                <h3 class="title-comments"><@spring.message 'article.page.comments'></h3>
                 <#list comments as comment>
 <#--                    <div class="media-left">-->
 <#--                        <a href="#">-->

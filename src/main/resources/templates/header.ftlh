@@ -33,10 +33,10 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="/signin">Log in</a>
+                            <a class="nav-link" href="/signin"><@spring.message 'header.signin'></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/signup">Registration</a>
+                            <a class="nav-link" href="/signup"><@spring.message 'header.signup'></a>
                         </li>
                     </ul>
                 </div>
@@ -44,7 +44,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="/search">Search</a>
+                            <a class="nav-link" href="/search"><@spring.message 'header.search'></a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -52,12 +52,12 @@
                                 ${current_user.getName()} ${current_user.getSurname()}
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="/profile/${current_user.getId()}">Profile</a>
-<#--                                <a class="dropdown-item" href="/edit">Edit</a>-->
-<#--                                <a class="dropdown-item" href="/revisions">Corrections</a>-->
-                                <a class="dropdown-item" href="/add">Create article</a>
+                                <a class="dropdown-item" href="/profile/${current_user.getId()}"><@spring.message 'header.profile'></a>
+<#--                                <a class="dropdown-item" href="/edit"><@spring.message 'header.edit'></a>-->
+<#--                                <a class="dropdown-item" href="/revisions"><@spring.message 'header.revisions'></a>-->
+                                <a class="dropdown-item" href="/add"><@spring.message 'header.add'></a>
 <#--                                <div class="dropdown-divider"></div>-->
-<#--                                <a class="dropdown-item" href="/logout">Log out</a>-->
+<#--                                <a class="dropdown-item" href="/logout"><@spring.message 'header.logout'></a>-->
                             </div>
                         </li>
                     </ul>
