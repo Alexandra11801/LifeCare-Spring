@@ -2,7 +2,7 @@
 
 <#macro content>
     <div class="container">
-        <div class="information"><@spring.message 'main.page.info'></div>
+        <div class="information"><@spring.message 'main.page.info'/></div>
     </div>
     </div>
 </#macro>

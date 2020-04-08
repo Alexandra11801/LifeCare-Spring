@@ -28,7 +28,7 @@ public class LocalizationConfig implements WebMvcConfigurer {
 	}
 
 	@Bean
-	public LocaleResolver localResolver(){
+	public LocaleResolver localeResolver(){
 		CookieLocaleResolver cookieLocaleResolver = new CookieLocaleResolver();
 		cookieLocaleResolver.setCookieName("localeInfo");
 		cookieLocaleResolver.setCookieMaxAge(60 * 60 * 24 * 365);
@@ -38,7 +38,7 @@ public class LocalizationConfig implements WebMvcConfigurer {
 	@Bean
 	public MessageSource messageSource(){
 		ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-		messageSource.setBasename("classpath:messages/Resource Bundle \'messages\'/messages");
+		messageSource.setBasename("classpath:messages/messages");
 		messageSource.setDefaultEncoding("UTF-8");
 		return messageSource;
 	}
