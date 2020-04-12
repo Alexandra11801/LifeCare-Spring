@@ -26,9 +26,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.csrf().disable();
 		http.authorizeRequests()
 				.antMatchers("/signup/**").permitAll()
-				.antMatchers("/confirm/**").permitAll()
+				.antMatchers("/email_confirm/**").permitAll()
+				.antMatchers("sms_confirm").permitAll()
 				.antMatchers("/").permitAll()
 				.antMatchers("/profile/**").authenticated()
+				.antMatchers("/edit").authenticated()
 				.antMatchers("/article/**").permitAll()
 				.antMatchers("/add").authenticated()
 				.antMatchers("/search/**").permitAll();
@@ -37,6 +39,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.defaultSuccessUrl("/")
 				.failureUrl("/signin?error")
 				.usernameParameter("email")
+				.permitAll();
+		http.logout()
+				.logoutUrl("/logout")
+				.logoutSuccessUrl("/")
 				.permitAll();
 	}
 

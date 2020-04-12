@@ -5,11 +5,22 @@
         <form class="pt-4 pb-4" action="/signup" enctype="multipart/form-data" method="post" novalidate>
             <div class="form-group">
                 <label for="firstname"><@spring.message 'signup.page.name'/></label>
-                <input type="text" class="form-control" id="name" name="name" placeholder="Name">
+                <input type="text" class="form-control" id="name" name="name" placeholder="<@spring.message 'signup.page.name'/>">
             </div>
             <div class="form-group">
                 <label for="lastname"><@spring.message 'signup.page.surname'/></label>
-                <input type="text" class="form-control" id="surname" name="surname" placeholder="Surname">
+                <input type="text" class="form-control" id="surname" name="surname" placeholder="<@spring.message 'signup.page.surname'/>">
+            </div>
+            <div class="form-group">
+                <label for="email"><@spring.message 'signup.page.phone'/></label>
+                <#if !incorrect_phone_number??>
+                    <input type="text" class="form-control" id="phone" name="phone" placeholder="+7**********">
+                <#else>
+                    <input type="text" class="form-control  is-invalid" id="phone" name="phone" placeholder="+7**********">
+                </#if>
+                <div class="invalid-feedback">
+                    <@spring.message 'signup.page.invalidPhone'/>
+                </div>
             </div>
             <div class="form-group">
                 <label for="email"><@spring.message 'signup.page.email'/></label>
@@ -54,6 +65,13 @@
             <div class="form-group">
                 <label for="avatar"><@spring.message 'signup.page.avatar'/></label>
                 <input type="file" class="form-control" id="avatar" name="avatar">
+            </div>
+
+            <div class="form-group">
+                <select class="form-control" id="confirmation" name="confirmation">
+                    <option><@spring.message 'signup.page.emailConfirm'/></option>
+                    <option><@spring.message 'signup.page.smsConfirm'/></option>
+                </select>
             </div>
 
 <#--            <div class="remember-me-check">-->

@@ -5,7 +5,7 @@
         <form class="pt-5 pb-4" method="post">
             <div class="form-group">
                 <label for="title"><@spring.message 'add.page.articleTitle'/></label>
-                <input type="text" class="form-control" id="title" name="title" placeholder="Title" required>
+                <input type="text" class="form-control" id="title" name="title" placeholder="<@spring.message 'add.page.articleTitle'/>" required>
             </div>
             <div class="form-group">
                 <label for="category"><@spring.message 'add.page.category' /></label>

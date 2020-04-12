@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import ru.itis.lifecarespring.services.ConfirmationService;
 
 @Controller
-@RequestMapping("/confirm")
+@RequestMapping("/email_confirm")
 public class ConfirmationController {
 
 	@Autowired
@@ -17,7 +17,7 @@ public class ConfirmationController {
 
 	@GetMapping("/{confirmation_code}")
 	public String getConfirmPage(@PathVariable("confirmation_code") String code, Model model){
-		boolean confirmed = service.confirm(code);
+		boolean confirmed = service.emailConfirm(code);
 		model.addAttribute("confirmed", confirmed);
 		return "confirmation_page";
 	}

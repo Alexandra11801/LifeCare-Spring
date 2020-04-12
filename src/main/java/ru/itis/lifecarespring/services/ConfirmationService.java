@@ -1,5 +1,6 @@
 package ru.itis.lifecarespring.services;
 
 public interface ConfirmationService {
-	boolean confirm(String confirmCode);
+	boolean emailConfirm(String confirmCode);
+	boolean smsConfirm(long confirmCode);
 }

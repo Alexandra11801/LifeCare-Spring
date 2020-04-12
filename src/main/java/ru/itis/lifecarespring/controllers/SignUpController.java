@@ -1,7 +1,5 @@
 package ru.itis.lifecarespring.controllers;
 
-import com.sun.deploy.net.HttpResponse;
-import com.sun.net.httpserver.HttpServer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,10 +8,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.itis.lifecarespring.dto.SignUpDto;
+import ru.itis.lifecarespring.models.Confirmation;
 import ru.itis.lifecarespring.services.FilesService;
 import ru.itis.lifecarespring.services.SignUpService;
 
-import javax.servlet.http.HttpServletResponse;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -31,7 +29,8 @@ public class SignUpController {
 	public String getSignUpPage(@RequestParam(value = "incorrect_password", required = false) String incorrect_password,
 	                            @RequestParam(value = "password_invalid", required = false) String password_invalid,
 	                            @RequestParam(value = "user_exists", required = false) String user_exists,
-	                            @RequestParam(value = "email_invalid", required = false) String email_invalid, Model model){
+	                            @RequestParam(value = "email_invalid", required = false) String email_invalid,
+	                            @RequestParam(value = "phone_invalid", required = false) String phone_invalid, Model model){
 		if(password_invalid != null){
 			model.addAttribute("password_invalid", true);
 		}
@@ -44,17 +43,23 @@ public class SignUpController {
 		if(email_invalid != null){
 			model.addAttribute("incorrect_email", true);
 		}
+		if(phone_invalid != null){
+			model.addAttribute("incorrect_phone_number", true);
+		}
 		model.addAttribute("authorizated", false);
 		return "signup_page";
 	}
 
 	@PostMapping
-	public String signUp(SignUpDto form, HttpServletResponse response){
+	public String signUp(SignUpDto form){
 		if(!passwordValid(form.getPassword())){
 			return "redirect:/signup?password_invalid";
 		}
 		if(!form.getPassword().equals(form.getRepeatPassword())){
 			return "redirect:/signup?incorrect_password";
+		}
+		if(!phoneNumberValid(form.getPhone())){
+			return "redirect:/signup?phone_invalid";
 		}
 		if(!emailValid(form.getEmail())){
 			return "redirect:/signup?email_invalid";
@@ -63,7 +68,18 @@ public class SignUpController {
 			return "redirect:/signup?user_exists";
 		}
 		service.signUp(form);
-		return "redirect:/";
+		if(form.getConfirmation().equals(Confirmation.EMAIL)) {
+			return "redirect:/";
+		}
+		else{
+			return "redirect:/sms_confirm";
+		}
+	}
+
+	public boolean phoneNumberValid(String phone){
+		Pattern pattern = Pattern.compile("((\\+7)|8)([0-9]){10}");
+		Matcher matcher = pattern.matcher(phone);
+		return matcher.matches();
 	}
 
 	public boolean emailValid(String email){

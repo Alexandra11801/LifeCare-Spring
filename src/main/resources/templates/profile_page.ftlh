@@ -8,7 +8,7 @@
             </div>
             <h4 class="h4">${user.getName()} ${user.getSurname()}</h4>
             <#if user.equals(current_user) == true>
-<#--                <a href="/edit" class="btn-sm btn-info"><@spring.message 'profile.page.edit'/></a>-->
+                <a href="/edit" class="btn-sm btn-info"><@spring.message 'profile.page.edit'/></a>
             </#if>
         </div>
         <div class="user-posts">

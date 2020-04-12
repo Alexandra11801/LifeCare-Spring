@@ -23,11 +23,13 @@ public class User {
 	private String surname;
 	private String hashPassword;
 	private String email;
+	private String phone;
 	private String imagePath;
 
 	@Enumerated(value = EnumType.STRING)
 	private State state;
-	private String confirmationCode;
+	private String emailConfirmationCode;
+	private long smsConfirmationCode;
 
 	@Enumerated(value=EnumType.STRING)
 	private Role role;

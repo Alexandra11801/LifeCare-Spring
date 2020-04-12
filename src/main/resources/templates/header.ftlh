@@ -53,11 +53,11 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="/profile/${current_user.getId()}"><@spring.message 'header.profile'/></a>
-<#--                                <a class="dropdown-item" href="/edit"><@spring.message 'header.edit'></a>-->
-<#--                                <a class="dropdown-item" href="/revisions"><@spring.message 'header.revisions'></a>-->
+                                <a class="dropdown-item" href="/edit"><@spring.message 'header.edit'/></a>
+<#--                                <a class="dropdown-item" href="/revisions"><@spring.message 'header.revisions'/></a>-->
                                 <a class="dropdown-item" href="/add"><@spring.message 'header.add'/></a>
-<#--                                <div class="dropdown-divider"></div>-->
-<#--                                <a class="dropdown-item" href="/logout"><@spring.message 'header.logout'></a>-->
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="/logout"><@spring.message 'header.logout'/></a>
                             </div>
                         </li>
                     </ul>

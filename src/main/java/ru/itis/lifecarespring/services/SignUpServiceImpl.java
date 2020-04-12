@@ -12,6 +12,7 @@ import ru.itis.lifecarespring.repositories.UsersRepository;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Random;
 import java.util.UUID;
 
 @Component
@@ -36,12 +37,16 @@ public class SignUpServiceImpl implements SignUpService {
 				.surname(dto.getSurname())
 				.hashPassword(encoder.encode(dto.getPassword()))
 				.email(dto.getEmail())
+				.phone(dto.getPhone())
 				.avatar(avatar)
 				.state(State.NOT_CONFIRMED)
-				.confirmationCode(UUID.randomUUID().toString())
+				.emailConfirmationCode(UUID.randomUUID().toString())
+				.smsConfirmationCode((new Random(89999)).nextInt() + 100000)
 				.role(Role.USER).build();
 		usersRepository.save(user);
-		emailService.sendMail("Confirmation", UserDto.from(user), user.getEmail(), user.getConfirmationCode());
+		if(dto.getConfirmation().equals(Confirmation.EMAIL)) {
+			emailService.sendMail("Confirmation", UserDto.from(user), user.getEmail(), user.getEmailConfirmationCode());
+		}
 	}
 
 	@Override
