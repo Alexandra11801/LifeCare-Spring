@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import ru.itis.lifecarespring.models.Article;
+import ru.itis.lifecarespring.models.Category;
 import ru.itis.lifecarespring.models.User;
 
 import java.util.List;
@@ -29,7 +30,7 @@ public class ArticleDto {
 				.id(article.getId())
 				.title(article.getTitle())
 				.text(article.getText())
-				.category(article.getCategory())
+				.category(article.getCategory().getCategory())
 				.likes(article.getLikes())
 				.dislikes(article.getDislikes())
 				.author(article.getAuthor()).build();

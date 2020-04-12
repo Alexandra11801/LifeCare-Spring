@@ -4,6 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import ru.itis.lifecarespring.models.Article;
+import ru.itis.lifecarespring.models.Category;
 import ru.itis.lifecarespring.models.User;
 
 import java.util.List;
@@ -14,6 +15,7 @@ public interface ArticlesRepository extends JpaRepository<Article, Long> {
 	Optional<Article> findByTitle(String title);
 	Optional<Article> findById(long id);
 	Optional<List<Article>> findAllByTitleContainsIgnoreCase(String title);
+	Optional<List<Article>> findAllByCategoryAndTitleContainsIgnoreCase(Category category, String title);
 
 	@Modifying
 	@Query("update Article a set a.likes = ?1 where a.id = ?2")

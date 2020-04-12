@@ -4,12 +4,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import ru.itis.lifecarespring.dto.ArticleDto;
+import ru.itis.lifecarespring.dto.CategoryDto;
 import ru.itis.lifecarespring.dto.CommentDto;
 import ru.itis.lifecarespring.dto.UserDto;
 import ru.itis.lifecarespring.models.Article;
+import ru.itis.lifecarespring.models.Category;
 import ru.itis.lifecarespring.models.Comment;
 import ru.itis.lifecarespring.models.User;
 import ru.itis.lifecarespring.repositories.ArticlesRepository;
+import ru.itis.lifecarespring.repositories.CategoriesRepository;
 import ru.itis.lifecarespring.repositories.CommentsRepository;
 import ru.itis.lifecarespring.repositories.UsersRepository;
 
@@ -28,6 +31,9 @@ public class ArticleServiceImpl implements ArticleService {
 
 	@Autowired
 	private CommentsRepository commentsRepository;
+
+	@Autowired
+	private CategoriesRepository categoriesRepository;
 
 	@Override
 	public List<ArticleDto> allArticles(UserDto dto) {
@@ -76,9 +82,10 @@ public class ArticleServiceImpl implements ArticleService {
 
 	@Override
 	public void addArticle(ArticleDto dto, UserDto author) {
+		Category category = categoriesRepository.findByCategory(dto.getCategory()).get();
 		Article article = Article.builder()
 							.title(dto.getTitle())
-							.category(dto.getCategory())
+							.category(category)
 							.text(dto.getText())
 							.author(usersRepository.findById(author.getId()).get())
 							.likes(0).dislikes(0).build();
@@ -92,7 +99,23 @@ public class ArticleServiceImpl implements ArticleService {
 			return ArticleDto.from(articles.get());
 		}
 		else{
-			return new ArrayList<ArticleDto>();
+			return new ArrayList<>();
+		}
+	}
+
+	@Override
+	public List<ArticleDto> getAllArticlesByTitleAndCategory(String title, CategoryDto category) {
+		Optional<Category> optional = categoriesRepository.findByCategory(category.getCategory());
+		if(optional.isPresent()) {
+			Optional<List<Article>> articles = articlesRepository.findAllByCategoryAndTitleContainsIgnoreCase(optional.get(), title);
+			if (articles.isPresent()) {
+				return ArticleDto.from(articles.get());
+			} else {
+				return new ArrayList<>();
+			}
+		}
+		else{
+			throw new RuntimeException("Category not found");
 		}
 	}
 

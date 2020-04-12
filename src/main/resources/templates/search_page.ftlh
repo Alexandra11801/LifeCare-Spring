@@ -4,16 +4,16 @@
     <div class="container">
         <form class="form-inline mt-4 pb-4" accept-charset="utf-8" method="post">
             <input class="form-control rounded-0 w-75" id="title" name="title" type="text" placeholder="Search...">
-            <button class="btn btn-info rounded-0 w-25" type="submit">Search</button>
-<#--            <div class="form-group">-->
-<#--                <label for="category">Cathegory</label>-->
-<#--                <select class="form-control" id="category" name="category">-->
-<#--                    <option>All categories</option>-->
-<#--                    <#list categories as cat>-->
-<#--                        <option>${cat}</option>-->
-<#--                    </#list>-->
-<#--                </select>-->
-<#--            </div>-->
+            <button class="btn btn-info rounded-0 w-25" type="submit"><@spring.message 'search.page.search'/></button>
+            <div class="form-group">
+                <label for="category"><@spring.message 'search.page.category'/></label>
+                <select class="form-control" id="category" name="category">
+                    <option>All categories</option>
+                    <#list categories as cat>
+                        <option>${cat.getCategory()}</option>
+                    </#list>
+                </select>
+            </div>
         </form>
     </div>
 
@@ -28,6 +28,6 @@
 
 </#macro>
 
-<#macro title>Search</#macro>
+<#macro title><@spring.message 'search.page.title'/></#macro>
 
 <@main/>

@@ -11,4 +11,5 @@ import lombok.NoArgsConstructor;
 @Builder
 public class ArticleTitleDto {
 	private String title;
+	private String category;
 }

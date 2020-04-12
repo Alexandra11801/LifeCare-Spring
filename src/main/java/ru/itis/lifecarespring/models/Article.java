@@ -22,7 +22,10 @@ public class Article {
 
 	@Column(length = 999999999)
 	private String text;
-	private String category;
+
+	@ManyToOne
+	@JoinColumn(name="cathegory_id")
+	private Category category;
 	private int likes;
 	private int dislikes;
 

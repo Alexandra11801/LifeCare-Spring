@@ -71,6 +71,7 @@
 
     <script type="application/javascript">
         function like(){
+            console.log("like");
             $.ajax({
                 url: "article/like",
                 data: {
@@ -79,6 +80,7 @@
                 dataType: "json",
                 scriptCharset: "utf-8",
                 success: function (msg) {
+                    console.log("sucess");
                     $("#likes").text("+" + msg.toString());
                 }
             })

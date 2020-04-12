@@ -5,22 +5,22 @@
         <form class="pt-4 pb-4" method="post">
             <#if !error??>
                 <div class="form-group">
-                    <label for="email">Email</label>
+                    <label for="email"><@spring.message 'signin.page.email'/></label>
                     <input type="email" class="form-control" id="email" name="email" placeholder="email@domain.com">
                 </div>
                 <div class="form-group">
-                    <label for="password">Password</label>
+                    <label for="password"><@spring.message 'signin.page.password'/></label>
                     <input type="password" class="form-control" id="password" name="password" placeholder="* * * * * * * *">
                 </div>
             <#else>
                 <div class="form-group">
-                    <label for="email">Email</label>
+                    <label for="email"><@spring.message 'signin.page.email'/></label>
                     <input type="email" class="form-control is-invalid" id="email" name="email" placeholder="email@domain.com">
                 </div>
                 <div class="form-group">
-                    <label for="password">Password</label>
+                    <label for="password"><@spring.message 'signin.page.password'/></label>
                     <input type="password" class="form-control is-invalid" id="password" name="password" placeholder="* * * * * * * *">
-                    <div class="invalid-feedback">Email or password is invalid</div>
+                    <div class="invalid-feedback"><@spring.message 'signin.page.error'/></div>
                 </div>
             </#if>
 
@@ -32,12 +32,12 @@
 <#--            </div>-->
 
             <div class="form-group">
-                <button type="submit" class="mt-2 btn btn-success">Log in</button>
+                <button type="submit" class="mt-2 btn btn-success"><@spring.message 'signin.page.signin'/></button>
             </div>
         </form>
     </div>
 </#macro>
 
-<#macro title>Authorization</#macro>
+<#macro title><@spring.message 'signin.page.title'/></#macro>
 
 <@main/>
