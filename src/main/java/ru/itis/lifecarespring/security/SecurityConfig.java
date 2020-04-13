@@ -27,7 +27,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests()
 				.antMatchers("/signup/**").permitAll()
 				.antMatchers("/email_confirm/**").permitAll()
-				.antMatchers("sms_confirm").permitAll()
+				.antMatchers("/sms_confirm").permitAll()
 				.antMatchers("/").permitAll()
 				.antMatchers("/profile/**").authenticated()
 				.antMatchers("/edit").authenticated()

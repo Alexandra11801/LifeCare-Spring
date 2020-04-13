@@ -20,6 +20,6 @@ public class SignUpDto {
 	private String email;
 	private String phone;
 	private MultipartFile avatar;
-	private Confirmation confirmation;
+	private String confirmation;
 
 }

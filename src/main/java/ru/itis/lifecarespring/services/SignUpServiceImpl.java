@@ -28,6 +28,9 @@ public class SignUpServiceImpl implements SignUpService {
 	private EmailService emailService;
 
 	@Autowired
+	private SMSService smsService;
+
+	@Autowired
 	private PasswordEncoder encoder;
 
 	@Override
@@ -46,6 +49,10 @@ public class SignUpServiceImpl implements SignUpService {
 		usersRepository.save(user);
 		if(dto.getConfirmation().equals(Confirmation.EMAIL)) {
 			emailService.sendMail("Confirmation", UserDto.from(user), user.getEmail(), user.getEmailConfirmationCode());
+		}
+		else{
+			String text = "Your confirmation code: " + user.getSmsConfirmationCode();
+			smsService.sendMessage(user.getPhone(), text);
 		}
 	}
 

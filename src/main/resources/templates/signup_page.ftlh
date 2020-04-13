@@ -69,8 +69,8 @@
 
             <div class="form-group">
                 <select class="form-control" id="confirmation" name="confirmation">
-                    <option><@spring.message 'signup.page.emailConfirm'/></option>
-                    <option><@spring.message 'signup.page.smsConfirm'/></option>
+                    <option value="Confirmation.EMAIL"><@spring.message 'signup.page.emailConfirm'/></option>
+                    <option value="Confirmation.PHONE"><@spring.message 'signup.page.smsConfirm'/></option>
                 </select>
             </div>
 

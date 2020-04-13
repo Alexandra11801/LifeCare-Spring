@@ -7,7 +7,7 @@
                 <img src="/${user.getImagePath()}" alt="" width="128" height="128">
             </div>
             <h4 class="h4">${user.getName()} ${user.getSurname()}</h4>
-            <#if user.equals(current_user) == true>
+            <#if user.getId() == current_user.getId()>
                 <a href="/edit" class="btn-sm btn-info"><@spring.message 'profile.page.edit'/></a>
             </#if>
         </div>
