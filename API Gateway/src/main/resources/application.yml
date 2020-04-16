@@ -1,0 +1,18 @@
+server:
+  port: 1010
+zuul:
+  routes:
+    users:
+      path: /users-management/**
+      serviceId: users-service
+    categories:
+      path: /categories-management/**
+      serviceId: categories-service
+
+spring:
+  application:
+    name: api-gateway
+eureka:
+  client:
+    service-url.default: http://localhost:8761/eureka
+
