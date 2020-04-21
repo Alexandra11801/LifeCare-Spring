@@ -33,7 +33,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/edit").authenticated()
 				.antMatchers("/article/**").permitAll()
 				.antMatchers("/add").authenticated()
-				.antMatchers("/search/**").permitAll();
+				.antMatchers("/search/**").permitAll()
+				.antMatchers("/suggest-revision").authenticated()
+				.antMatchers("/revisions/**").authenticated();
 		http.formLogin()
 				.loginPage("/signin")
 				.defaultSuccessUrl("/")

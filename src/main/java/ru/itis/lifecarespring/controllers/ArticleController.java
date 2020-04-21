@@ -55,15 +55,17 @@ public class ArticleController {
 	@ResponseBody
 	public int like(@RequestParam("article") String title){
 		ArticleDto article = articleService.getArticleByTitle(title);
-		articleService.like(article);
-		return article.getLikes() + 1;
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		UserDto user = UserDto.from (((UserDetailsImpl) auth.getPrincipal()).getUser());
+		return articleService.like(article, user);
 	}
 
 	@GetMapping("/dislike")
 	@ResponseBody
 	public int dislike(@RequestParam("article") String title){
 		ArticleDto article = articleService.getArticleByTitle(title);
-		articleService.dislike(article);
-		return article.getDislikes() + 1;
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		UserDto user = UserDto.from (((UserDetailsImpl) auth.getPrincipal()).getUser());
+		return articleService.dislike(article, user);
 	}
 }

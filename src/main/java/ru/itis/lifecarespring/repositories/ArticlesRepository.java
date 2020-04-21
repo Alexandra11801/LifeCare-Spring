@@ -16,12 +16,4 @@ public interface ArticlesRepository extends JpaRepository<Article, Long> {
 	Optional<Article> findById(long id);
 	Optional<List<Article>> findAllByTitleContainsIgnoreCase(String title);
 	Optional<List<Article>> findAllByCategoryAndTitleContainsIgnoreCase(Category category, String title);
-
-	@Modifying
-	@Query("update Article a set a.likes = ?1 where a.id = ?2")
-	int setLikesFor(int likes, long id);
-
-	@Modifying
-	@Query("update Article a set a.dislikes = ?1 where a.id = ?2")
-	int setDisikesFor(int dislikes, long id);
 }

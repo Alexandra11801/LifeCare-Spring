@@ -9,7 +9,7 @@
         </div>
         <#if authorizated == true>
             <div class="mt-3 mb-3">
-                <a href="/correct?article=${article.getTitle()}"><@spring.message 'article.page.suggest'/></a>
+                <a href="/suggest-revision?title=${article.getTitle()}"><@spring.message 'article.page.suggest'/></a>
             </div>
         </#if>
         <div class="row">
@@ -71,31 +71,29 @@
 
     <script type="application/javascript">
         function like(){
-            console.log("like");
             $.ajax({
-                url: "article/like",
+                url: "/article/like",
                 data: {
                     "article": "${article.getTitle()}",
                 },
                 dataType: "json",
                 scriptCharset: "utf-8",
                 success: function (msg) {
-                    console.log("sucess");
-                    $("#likes").text("+" + msg.toString());
+                    $("#likes").text("+ " + msg.toString());
                 }
             })
         }
 
         function dislike(){
             $.ajax({
-                url: "article/dislike",
+                url: "/article/dislike",
                 data: {
                     "article": "${article.getTitle()}",
                 },
                 dataType: "json",
                 scriptCharset: "utf-8",
                 success: function (msg) {
-                    $("#dislikes").text("-" + msg.toString());
+                    $("#dislikes").text("- " + msg.toString());
                 }
             })
         }

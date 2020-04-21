@@ -15,6 +15,6 @@ public interface ArticleService {
 	void addArticle(ArticleDto article, UserDto author);
 	List<ArticleDto> getAllArticlesByTitle(String title);
 	List<ArticleDto> getAllArticlesByTitleAndCategory(String title, CategoryDto category);
-	void like(ArticleDto article);
-	void dislike(ArticleDto article);
+	int like(ArticleDto article, UserDto user);
+	int dislike(ArticleDto article, UserDto user);
 }

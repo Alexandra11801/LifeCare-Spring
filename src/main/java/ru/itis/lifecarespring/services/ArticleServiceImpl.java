@@ -7,14 +7,8 @@ import ru.itis.lifecarespring.dto.ArticleDto;
 import ru.itis.lifecarespring.dto.CategoryDto;
 import ru.itis.lifecarespring.dto.CommentDto;
 import ru.itis.lifecarespring.dto.UserDto;
-import ru.itis.lifecarespring.models.Article;
-import ru.itis.lifecarespring.models.Category;
-import ru.itis.lifecarespring.models.Comment;
-import ru.itis.lifecarespring.models.User;
-import ru.itis.lifecarespring.repositories.ArticlesRepository;
-import ru.itis.lifecarespring.repositories.CategoriesRepository;
-import ru.itis.lifecarespring.repositories.CommentsRepository;
-import ru.itis.lifecarespring.repositories.UsersRepository;
+import ru.itis.lifecarespring.models.*;
+import ru.itis.lifecarespring.repositories.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +28,9 @@ public class ArticleServiceImpl implements ArticleService {
 
 	@Autowired
 	private CategoriesRepository categoriesRepository;
+
+	@Autowired
+	private RatesRepository ratesRepository;
 
 	@Override
 	public List<ArticleDto> allArticles(UserDto dto) {
@@ -120,12 +117,52 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 
 	@Override
-	public void like(ArticleDto article) {
-		articlesRepository.setLikesFor(article.getLikes() + 1, article.getId());
+	public int like(ArticleDto dto, UserDto userDto) {
+		Optional<Article> optionalArticle = articlesRepository.findById(dto.getId());
+		Optional<User> optionalUser = usersRepository.findById(userDto.getId());
+		if(optionalArticle.isPresent()){
+			if(optionalUser.isPresent()) {
+				Article article = optionalArticle.get();
+				User user = optionalUser.get();
+				if(!ratesRepository.findByArticleAndUser(article, user).isPresent()) {
+					article.setLikes(article.getLikes() + 1);
+					articlesRepository.save(article);
+					Rate rate = Rate.builder().article(article).user(user).build();
+					ratesRepository.save(rate);
+				}
+				return article.getLikes();
+			}
+			else{
+				throw new UsernameNotFoundException("User not found");
+			}
+		}
+		else{
+			throw new RuntimeException("Article not found");
+		}
 	}
 
 	@Override
-	public void dislike(ArticleDto article) {
-		articlesRepository.setDisikesFor(article.getDislikes() + 1, article.getId());
+	public int dislike(ArticleDto dto, UserDto userDto) {
+		Optional<Article> optionalArticle = articlesRepository.findById(dto.getId());
+		Optional<User> optionalUser = usersRepository.findById(userDto.getId());
+		if(optionalArticle.isPresent()){
+			if(optionalUser.isPresent()) {
+				Article article = optionalArticle.get();
+				User user = optionalUser.get();
+				if(!ratesRepository.findByArticleAndUser(article, user).isPresent()) {
+					article.setDislikes(article.getDislikes() + 1);
+					articlesRepository.save(article);
+					Rate rate = Rate.builder().article(article).user(user).build();
+					ratesRepository.save(rate);
+				}
+				return article.getDislikes();
+			}
+			else{
+				throw new UsernameNotFoundException("User not found");
+			}
+		}
+		else{
+			throw new RuntimeException("Article not found");
+		}
 	}
 }
