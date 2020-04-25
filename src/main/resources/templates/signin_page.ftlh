@@ -24,12 +24,14 @@
                 </div>
             </#if>
 
-<#--            <div class="remember-me-check">-->
-<#--                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" name="rememberMe">-->
-<#--                <label class="form-check-label" for="defaultCheck1">-->
-<#--                    Check me out-->
-<#--                </label>-->
-<#--            </div>-->
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+
+            <div class="remember-me-check">
+                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" name="rememberMe">
+                <label class="form-check-label" for="defaultCheck1">
+                    <@spring.message 'signin.page.remember'/>
+                </label>
+            </div>
 
             <div class="form-group">
                 <button type="submit" class="mt-2 btn btn-success"><@spring.message 'signin.page.signin'/></button>

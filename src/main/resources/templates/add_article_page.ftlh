@@ -20,6 +20,8 @@
                 <textarea class="form-control" id="text" rows="3" name="text" required></textarea>
             </div>
 
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+
             <div class="form-group">
                 <button type="submit" class="btn btn-success"><@spring.message 'add.page.add'/></button>
             </div>

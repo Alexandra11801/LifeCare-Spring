@@ -14,6 +14,9 @@
                     <@spring.message 'smsConfirmation.page.invalidCode'/>
                 </div>
             </div>
+
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+
             <div class="form-group">
                 <button type="submit" class="mt-2 btn btn-success"><@spring.message 'smsConfirmation.page.confirm'/></button>
             </div>

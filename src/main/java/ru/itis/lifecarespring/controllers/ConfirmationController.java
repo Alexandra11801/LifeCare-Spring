@@ -18,6 +18,7 @@ public class ConfirmationController {
 	@GetMapping("/{confirmation_code}")
 	public String getConfirmPage(@PathVariable("confirmation_code") String code, Model model){
 		boolean confirmed = service.emailConfirm(code);
+		model.addAttribute("authorizated", false);
 		model.addAttribute("confirmed", confirmed);
 		return "confirmation_page";
 	}

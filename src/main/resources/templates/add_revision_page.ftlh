@@ -14,6 +14,8 @@
                 <textarea class="form-control" id="description" rows="2" name="description"></textarea>
             </div>
 
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+
             <div class="form-group">
                 <button type="submit" class="btn btn-success"><@spring.message 'revise.page.suggest'/></button>
             </div>

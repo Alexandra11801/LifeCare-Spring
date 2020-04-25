@@ -3,6 +3,7 @@ package ru.itis.lifecarespring.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.itis.lifecarespring.dto.RevisionDto;
 import ru.itis.lifecarespring.models.Article;
 import ru.itis.lifecarespring.models.Revision;
@@ -28,6 +29,7 @@ public class RevisionsServiceImpl implements RevisionsService {
 	private UsersRepository usersRepository;
 
 	@Override
+	@Transactional
 	public void suggestRevision(RevisionDto dto, String articleTitle) {
 		Optional<Article> optional = articlesRepository.findByTitle(articleTitle);
 		if(optional.isPresent()) {
@@ -46,6 +48,7 @@ public class RevisionsServiceImpl implements RevisionsService {
 	}
 
 	@Override
+	@Transactional
 	public List<RevisionDto> allRevisions(long userId) {
 		Optional<User> user = usersRepository.findById(userId);
 		if(user.isPresent()){
@@ -63,6 +66,7 @@ public class RevisionsServiceImpl implements RevisionsService {
 	}
 
 	@Override
+	@Transactional
 	public void accept(long revisionId) {
 		Optional<Revision> optional = revisionsRepository.findById(revisionId);
 		if(optional.isPresent()){
@@ -75,6 +79,7 @@ public class RevisionsServiceImpl implements RevisionsService {
 	}
 
 	@Override
+	@Transactional
 	public void reject(long revisionId) {
 		Optional<Revision> revision = revisionsRepository.findById(revisionId);
 		if(revision.isPresent()){

@@ -19,10 +19,10 @@ public class Revision {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
-	@Column(length = 999999999)
+	@Lob
 	private String text;
 
-	@Column(length = 999999999)
+	@Lob
 	private String description;
 
 	@ManyToOne

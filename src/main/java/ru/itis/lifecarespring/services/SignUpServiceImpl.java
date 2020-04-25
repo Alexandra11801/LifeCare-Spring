@@ -47,7 +47,7 @@ public class SignUpServiceImpl implements SignUpService {
 				.smsConfirmationCode((new Random(89999)).nextInt() + 100000)
 				.role(Role.USER).build();
 		usersRepository.save(user);
-		if(dto.getConfirmation().equals(Confirmation.EMAIL)) {
+		if(dto.getConfirmation().equals("Confirmation.EMAIL")) {
 			emailService.sendMail("Confirmation", UserDto.from(user), user.getEmail(), user.getEmailConfirmationCode());
 		}
 		else{

@@ -3,6 +3,7 @@ package ru.itis.lifecarespring.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.itis.lifecarespring.dto.ArticleDto;
 import ru.itis.lifecarespring.dto.CategoryDto;
 import ru.itis.lifecarespring.dto.CommentDto;
@@ -33,6 +34,7 @@ public class ArticleServiceImpl implements ArticleService {
 	private RatesRepository ratesRepository;
 
 	@Override
+	@Transactional
 	public List<ArticleDto> allArticles(UserDto dto) {
 		Optional<User> user = usersRepository.findById(dto.getId());
 		if(user.isPresent()){
@@ -50,6 +52,7 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 
 	@Override
+	@Transactional
 	public ArticleDto getArticleByTitle(String title) {
 		Optional<Article> article = articlesRepository.findByTitle(title);
 		if(article.isPresent()){
@@ -61,6 +64,7 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 
 	@Override
+	@Transactional
 	public List<CommentDto> getAllComments(ArticleDto dto) {
 		Optional<Article> article = articlesRepository.findByTitle(dto.getTitle());
 		if(article.isPresent()){
@@ -78,6 +82,7 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 
 	@Override
+	@Transactional
 	public void addArticle(ArticleDto dto, UserDto author) {
 		Category category = categoriesRepository.findByCategory(dto.getCategory()).get();
 		Article article = Article.builder()
@@ -90,6 +95,7 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 
 	@Override
+	@Transactional
 	public List<ArticleDto> getAllArticlesByTitle(String title) {
 		Optional<List<Article>> articles = articlesRepository.findAllByTitleContainsIgnoreCase(title);
 		if(articles.isPresent()){
@@ -101,6 +107,7 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 
 	@Override
+	@Transactional
 	public List<ArticleDto> getAllArticlesByTitleAndCategory(String title, CategoryDto category) {
 		Optional<Category> optional = categoriesRepository.findByCategory(category.getCategory());
 		if(optional.isPresent()) {
@@ -117,6 +124,7 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 
 	@Override
+	@Transactional
 	public int like(ArticleDto dto, UserDto userDto) {
 		Optional<Article> optionalArticle = articlesRepository.findById(dto.getId());
 		Optional<User> optionalUser = usersRepository.findById(userDto.getId());
@@ -142,6 +150,7 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 
 	@Override
+	@Transactional
 	public int dislike(ArticleDto dto, UserDto userDto) {
 		Optional<Article> optionalArticle = articlesRepository.findById(dto.getId());
 		Optional<User> optionalUser = usersRepository.findById(userDto.getId());

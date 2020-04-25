@@ -67,8 +67,9 @@ public class SignUpController {
 		if(service.userExists(form.getEmail())){
 			return "redirect:/signup?user_exists";
 		}
+		System.out.println(form.getConfirmation());
 		service.signUp(form);
-		if(form.getConfirmation().equals(Confirmation.EMAIL)) {
+		if(form.getConfirmation().equals("Confirmation.EMAIL")) {
 			return "redirect:/";
 		}
 		else{

@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import ru.itis.lifecarespring.dto.UserDto;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Data
 @NoArgsConstructor
@@ -14,7 +15,7 @@ import javax.persistence.*;
 @Entity
 @Builder
 @Table(name = "users")
-public class User {
+public class User implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

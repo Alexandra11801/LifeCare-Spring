@@ -37,6 +37,8 @@
                 <input type="text" name="receiver" id="receiver-id-field" style="display: none" value="">
                 <input type="text" name="articleId" id="articleId" style="display: none" value="${article.getId()}">
 
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+
                 <div class="form-group">
                     <button type="submit" class="btn btn-success"><@spring.message 'article.page.comment'/></button>
                 </div>

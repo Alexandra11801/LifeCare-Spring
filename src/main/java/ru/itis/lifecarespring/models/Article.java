@@ -20,7 +20,7 @@ public class Article {
 	private long id;
 	private String title;
 
-	@Column(length = 999999999)
+	@Lob
 	private String text;
 
 	@ManyToOne

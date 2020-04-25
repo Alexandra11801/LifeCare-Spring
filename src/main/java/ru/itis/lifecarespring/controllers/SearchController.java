@@ -65,7 +65,7 @@ public class SearchController {
 		return "search_page";
 	}
 
-	@PostMapping("/*")
+	@PostMapping("**")
 	public String search(ArticleTitleDto form){
 		List<String> categories = Arrays.asList(form.getCategory().split(","));
 		String category = categories.get(categories.size() - 1);

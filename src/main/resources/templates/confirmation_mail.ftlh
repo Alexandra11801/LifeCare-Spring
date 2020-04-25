@@ -10,6 +10,6 @@
 <body>
     <h2>Hello, ${user.getName()}!</h2>
     <div>Please, confirm your account</div>
-    <div><a href="http://localhost:1010/confirm/${confirmation_code}">localhost:1010/confirm/${confirmation_code}</a></div>
+    <div><a href="http://localhost:1010/email_confirm/${confirmation_code}">localhost:1010/email_confirm/${confirmation_code}</a></div>
 </body>
 </html>

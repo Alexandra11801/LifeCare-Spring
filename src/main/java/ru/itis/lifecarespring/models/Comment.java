@@ -25,6 +25,8 @@ public class Comment {
 	@JoinColumn(name = "article_id")
 	private Article article;
 	private String senderName;
+
+	@Lob
 	private String text;
 	private LocalDateTime date;
 

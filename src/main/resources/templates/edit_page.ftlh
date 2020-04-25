@@ -25,6 +25,8 @@
                 <input type="file" class="form-control" id="avatar" name="avatar">
             </div>
 
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+
             <div class="form-group">
                 <button type="submit" class="mt-2 btn btn-success"><@spring.message 'edit.page.edit'/></button>
             </div>

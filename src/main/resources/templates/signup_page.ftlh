@@ -74,12 +74,14 @@
                 </select>
             </div>
 
-<#--            <div class="remember-me-check">-->
-<#--                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" name="rememberMe">-->
-<#--                <label class="form-check-label" for="defaultCheck1">-->
-<#--                    Check me out-->
-<#--                </label>-->
-<#--            </div>-->
+            <div class="remember-me-check">
+                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" name="rememberMe">
+                <label class="form-check-label" for="defaultCheck1">
+                    <@spring.message 'signup.page.remember'/>
+                </label>
+            </div>
+
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 
             <div class="form-group">
                 <button type="submit" class="mt-2 btn btn-success"><@spring.message 'signup.page.signup'/></button>
