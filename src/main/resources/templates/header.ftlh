@@ -16,12 +16,12 @@
         <link rel="stylesheet" type="text/css" href="css/commentsStyle.css">
 
         <script type="application/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script type="application/json" src="/js/jquery-3.4.1.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
 
         <title><@title/></title>
     </head>
 
-    <body>
+    <body onload="if(typeof connect() == 'function'){connect()}">
 
     <div class="header container">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -29,22 +29,21 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <#if authorizated == false>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ml-auto">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/search"><@spring.message 'header.search'/></a>
+                    </li>
+                    <#if authorizated == false>
                         <li class="nav-item">
                             <a class="nav-link" href="/signin"><@spring.message 'header.signin'/></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/signup"><@spring.message 'header.signup'/></a>
                         </li>
-                    </ul>
-                </div>
-            <#else>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ml-auto">
+                    <#else>
                         <li class="nav-item">
-                            <a class="nav-link" href="/search"><@spring.message 'header.search'/></a>
+                            <a class="nav-link" href="/chat"><@spring.message 'header.chat'/></a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -60,10 +59,9 @@
                                 <a class="dropdown-item" href="/logout"><@spring.message 'header.logout'/></a>
                             </div>
                         </li>
-                    </ul>
-                </div>
-            </#if>
-
+                    </#if>
+                </ul>
+            </div>
         </nav>
     </div>
     <@content/>

@@ -47,11 +47,6 @@
             <div class="comments">
                 <h3 class="title-comments"><@spring.message 'article.page.comments'/></h3>
                 <#list comments as comment>
-<#--                    <div class="media-left">-->
-<#--                        <a href="#">-->
-<#--                            <img class="media-object img-rounded" src="${comment.getSenderAvatar()}" alt="..."  width="20" height="20">-->
-<#--                        </a>-->
-<#--                    </div>-->
                     <div class="media-body">
                         <div class="media-heading">
                             <div class="author">${comment.getSenderName()}</div>
@@ -60,11 +55,6 @@
                             </div>
                         </div>
                         <div class="media-text text-justify">${comment.getText()}</div>
-                        <div class="footer-comment">
-<#--                                <span class="comment-reply">-->
-<#--                                    <button class="reply btn btn-secondary" onclick="reply(this, '${comment.getSenderName()}')">Reply<span name="comm-id" id="comm-id" style="display: none">${comment.getId()}</span></button>-->
-<#--                                </span>-->
-                        </div>
                     </div>
                 </#list>
             </div>

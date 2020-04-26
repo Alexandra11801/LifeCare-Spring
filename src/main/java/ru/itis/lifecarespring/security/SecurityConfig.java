@@ -50,6 +50,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/search/**").permitAll()
 				.antMatchers("/suggest-revision").authenticated()
 				.antMatchers("/revisions/**").authenticated()
+				.antMatchers("/sockets").authenticated()
+				.antMatchers("/chat").authenticated()
 				.and().rememberMe().rememberMeParameter("rememberMe").tokenRepository(persistentTokenRepository());
 		http.formLogin()
 				.loginPage("/signin")
