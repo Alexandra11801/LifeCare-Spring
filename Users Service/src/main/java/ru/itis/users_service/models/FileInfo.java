@@ -12,7 +12,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "files")
+@Table(name = "templates/files")
 public class FileInfo {
 
 	@Id

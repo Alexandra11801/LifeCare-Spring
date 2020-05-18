@@ -4,7 +4,7 @@
     <div class="container">
         <div class="text-center mt-3 mb-2">
             <div class="user-avatar">
-                <img src="/${user.getImagePath()}" alt="" width="128" height="128">
+                <img src="file:///C:/Users/aleks/IdeaProjects/LifeCare Spring/LifeCare-Spring/src/main/resources/templates/files/${user.getImageName()}" alt="" width="128" height="128">
             </div>
             <h4 class="h4">${user.getName()} ${user.getSurname()}</h4>
             <#if user.getId() == current_user.getId()>

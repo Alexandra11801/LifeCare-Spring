@@ -1,5 +1,5 @@
 server:
-  port: 1010
+  port: 80
 zuul:
   routes:
     users:

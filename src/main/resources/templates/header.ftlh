@@ -47,7 +47,7 @@
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img src="/${current_user.getImagePath()}" alt="" width="20" height="20">
+                                <img src="/files/${current_user.getImageName()}" alt="" width="20" height="20">
                                 ${current_user.getName()} ${current_user.getSurname()}
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">

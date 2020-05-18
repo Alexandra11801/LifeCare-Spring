@@ -3,6 +3,7 @@ package ru.itis.lifecarespring.security;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import ru.itis.lifecarespring.models.FileInfo;
 import ru.itis.lifecarespring.models.State;
 import ru.itis.lifecarespring.models.User;
 
@@ -12,6 +13,10 @@ import java.util.Collections;
 public class UserDetailsImpl implements UserDetails {
 
 	private User user;
+
+	public User getUser() {
+		return user;
+	}
 
 	public UserDetailsImpl(User user) {
 		this.user = user;
@@ -52,7 +57,4 @@ public class UserDetailsImpl implements UserDetails {
 		return user.getState().equals(State.CONFIRMED);
 	}
 
-	public User getUser() {
-		return user;
-	}
 }

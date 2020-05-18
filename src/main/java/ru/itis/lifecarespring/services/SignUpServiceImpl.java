@@ -42,6 +42,7 @@ public class SignUpServiceImpl implements SignUpService {
 				.email(dto.getEmail())
 				.phone(dto.getPhone())
 				.avatar(avatar)
+				.imageName(avatar.getStorageName())
 				.state(State.NOT_CONFIRMED)
 				.emailConfirmationCode(UUID.randomUUID().toString())
 				.smsConfirmationCode((new Random(89999)).nextInt() + 100000)

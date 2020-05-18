@@ -12,13 +12,12 @@ import java.util.List;
 
 @RestController
 @Slf4j
-@RequestMapping("/users")
 public class UsersController {
 
 	@Autowired
 	private UsersService usersService;
 
-	@GetMapping
+	@GetMapping("/users")
 	public List<UserDto> getUsers(){
 		return usersService.getUsers();
 	}

@@ -5,6 +5,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import ru.itis.lifecarespring.dto.EditDto;
@@ -36,7 +37,10 @@ public class EditServiceImpl implements EditService {
 			user.setEmail(dto.getEmail());
 			FileInfo avatar = filesService.save(dto.getAvatar());
 			user.setAvatar(avatar);
+			user.setImageName(avatar.getStorageName());
 			usersRepository.save(user);
+			Authentication auth = new UsernamePasswordAuthenticationToken(user.getEmail(), user.getHashPassword());
+			SecurityContextHolder.getContext().setAuthentication(auth);
 		}
 		else{
 			throw new UsernameNotFoundException("User not found");

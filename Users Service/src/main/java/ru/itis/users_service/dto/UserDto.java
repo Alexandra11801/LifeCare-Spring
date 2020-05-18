@@ -20,7 +20,7 @@ public class UserDto {
 	private String surname;
 	private String email;
 	private String phone;
-	private String imagePath;
+	private String imageName;
 
 	public static UserDto from(User user){
 		return UserDto.builder().id(user.getId())
@@ -28,7 +28,7 @@ public class UserDto {
 				.surname(user.getSurname())
 				.email(user.getEmail())
 				.phone(user.getPhone())
-				.imagePath(user.getAvatar().getUrl()).build();
+				.imageName(user.getAvatar().getUrl()).build();
 	}
 
 	public static List<UserDto> from(List<User> users){

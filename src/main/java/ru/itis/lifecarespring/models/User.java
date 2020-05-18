@@ -25,7 +25,7 @@ public class User implements Serializable {
 	private String hashPassword;
 	private String email;
 	private String phone;
-	private String imagePath;
+	private String imageName;
 
 	@Enumerated(value = EnumType.STRING)
 	private State state;
