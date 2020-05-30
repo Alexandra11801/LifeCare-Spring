@@ -39,7 +39,8 @@ public class RevisionsServiceImpl implements RevisionsService {
 					.description(dto.getDescription())
 					.article(article)
 					.articleTitle(articleTitle)
-					.articleAuthor(article.getAuthor()).build();
+					.articleAuthor(article.getAuthor())
+					.handled(false).build();
 			revisionsRepository.save(revision);
 		}
 		else{
@@ -74,16 +75,19 @@ public class RevisionsServiceImpl implements RevisionsService {
 			Article article = revision.getArticle();
 			article.setText(revision.getText());
 			articlesRepository.save(article);
-			revisionsRepository.delete(revision);
+			revision.setHandled(true);
+			revisionsRepository.save(revision);
 		}
 	}
 
 	@Override
 	@Transactional
 	public void reject(long revisionId) {
-		Optional<Revision> revision = revisionsRepository.findById(revisionId);
-		if(revision.isPresent()){
-			revisionsRepository.delete(revision.get());
+		Optional<Revision> optional = revisionsRepository.findById(revisionId);
+		if(optional.isPresent()){
+			Revision revision = optional.get();
+			revision.setHandled(true);
+			revisionsRepository.save(revision);
 		}
 	}
 }

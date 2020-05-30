@@ -11,6 +11,7 @@ import ru.itis.lifecarespring.dto.UserDto;
 import ru.itis.lifecarespring.models.*;
 import ru.itis.lifecarespring.repositories.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -90,7 +91,8 @@ public class ArticleServiceImpl implements ArticleService {
 							.category(category)
 							.text(dto.getText())
 							.author(usersRepository.findById(author.getId()).get())
-							.likes(0).dislikes(0).build();
+							.likes(0).dislikes(0)
+							.createdAt(LocalDate.now()).build();
 		articlesRepository.save(article);
 	}
 
@@ -174,4 +176,12 @@ public class ArticleServiceImpl implements ArticleService {
 			throw new RuntimeException("Article not found");
 		}
 	}
+
+	@Override
+	@Transactional
+	public List<ArticleDto> getResentArticles(LocalDate date) {
+		Optional<List<Article>> optional = articlesRepository.findAllByCreatedAtAfter(date);
+		return optional.isPresent() ? ArticleDto.from(optional.get()) : new ArrayList<>();
+	}
+
 }

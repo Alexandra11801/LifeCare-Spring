@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 
@@ -13,6 +14,7 @@ import javax.persistence.*;
 @Entity
 @Builder
 @Table(name = "revisions")
+@Where(clause = "handled = false")
 public class Revision {
 
 	@Id
@@ -33,5 +35,6 @@ public class Revision {
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User articleAuthor;
+	private boolean handled;
 
 }

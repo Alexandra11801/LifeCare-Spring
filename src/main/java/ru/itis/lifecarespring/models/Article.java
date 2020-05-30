@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor
@@ -32,5 +33,5 @@ public class Article {
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User author;
-
+	private LocalDate createdAt;
 }

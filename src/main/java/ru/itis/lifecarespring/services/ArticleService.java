@@ -6,6 +6,7 @@ import ru.itis.lifecarespring.dto.CommentDto;
 import ru.itis.lifecarespring.dto.UserDto;
 import ru.itis.lifecarespring.models.Category;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface ArticleService {
@@ -17,4 +18,5 @@ public interface ArticleService {
 	List<ArticleDto> getAllArticlesByTitleAndCategory(String title, CategoryDto category);
 	int like(ArticleDto article, UserDto user);
 	int dislike(ArticleDto article, UserDto user);
+	List<ArticleDto> getResentArticles(LocalDate date);
 }

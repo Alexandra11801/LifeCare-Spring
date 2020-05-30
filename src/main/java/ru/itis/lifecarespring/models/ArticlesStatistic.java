@@ -6,25 +6,19 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @Entity
-@Table(name = "files")
-public class FileInfo implements Serializable {
+@Builder
+@Table(name = "articles_statistics")
+public class ArticlesStatistic {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	private String storageName;
-
-	@Transient
-	private String originalName;
-	private long size;
-	private String type;
-	private String url;
+	private String period;
+	private int articlesNumber;
 
 }
