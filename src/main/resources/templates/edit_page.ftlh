@@ -11,7 +11,7 @@
         <form class="pt-4 pb-4" enctype="multipart/form-data" method="post">
             <div class="form-group">
                 <label for="name"><@spring.message 'edit.page.name'/></label>
-                <@spring.formInput "editDto.name"/>
+                <@spring.formInput "editDto.name", "value = ${current_user.getName()}"/>
                 <@spring.showErrors "", "error"/>
 <#--                <input type="text" class="form-control" id="name" name="name" value="${current_user.getName()}">-->
             </div>

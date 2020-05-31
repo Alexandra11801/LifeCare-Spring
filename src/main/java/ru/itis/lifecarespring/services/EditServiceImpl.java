@@ -35,9 +35,11 @@ public class EditServiceImpl implements EditService {
 			user.setSurname(dto.getSurname());
 			user.setPhone(dto.getPhone());
 			user.setEmail(dto.getEmail());
-			FileInfo avatar = filesService.save(dto.getAvatar());
-			user.setAvatar(avatar);
-			user.setImageName(avatar.getStorageName());
+			if(dto.getAvatar() != null) {
+				FileInfo avatar = filesService.save(dto.getAvatar());
+				user.setAvatar(avatar);
+				user.setImageName(avatar.getStorageName());
+			}
 			usersRepository.save(user);
 			Authentication auth = new UsernamePasswordAuthenticationToken(user.getEmail(), user.getHashPassword());
 			SecurityContextHolder.getContext().setAuthentication(auth);

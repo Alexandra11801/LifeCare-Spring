@@ -8,6 +8,7 @@ import ru.itis.lifecarespring.dto.SignUpDto;
 import ru.itis.lifecarespring.dto.UserDto;
 import ru.itis.lifecarespring.models.*;
 import ru.itis.lifecarespring.repositories.CookiesRepository;
+import ru.itis.lifecarespring.repositories.FilesRepository;
 import ru.itis.lifecarespring.repositories.UsersRepository;
 
 import javax.servlet.http.Cookie;
@@ -25,6 +26,9 @@ public class SignUpServiceImpl implements SignUpService {
 	private FilesService filesService;
 
 	@Autowired
+	private FilesRepository filesRepository;
+
+	@Autowired
 	private EmailService emailService;
 
 	@Autowired
@@ -35,7 +39,8 @@ public class SignUpServiceImpl implements SignUpService {
 
 	@Override
 	public void signUp(SignUpDto dto) {
-		FileInfo avatar = filesService.save(dto.getAvatar());
+		FileInfo avatar = dto.getAvatar() != null ? filesService.save(dto.getAvatar())
+										: filesRepository.findByStorageName("avatar.png").get();
 		User user = User.builder().name(dto.getName())
 				.surname(dto.getSurname())
 				.hashPassword(encoder.encode(dto.getPassword()))
